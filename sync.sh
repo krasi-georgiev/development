@@ -1,10 +1,14 @@
 #!/usr/bin/bash
 
 
-while inotifywait -r -e modify,create,delete /home/krasi/src/github.com/cryptoriums/packages /home/krasi/src/github.com/cryptoriums/telliot /home/krasi/src/github.com/cryptoriums/telliot-frontr /home/krasi/src/github.com/bonedaddy/go-blocknative
+function sync() {
+    rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222 ssh -p22 -o "StrictHostKeyChecking=no"' /home/krasi/src/github.com/cryptoriums/flashbot  root@localhost:/
+    rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222 ssh -p22 -o "StrictHostKeyChecking=no"' /home/krasi/src/github.com/cryptoriums/packages  root@localhost:/
+}
+
+sync
+
+while inotifywait -r -e modify,create,delete /home/krasi/src/github.com/cryptoriums/packages /home/krasi/src/github.com/cryptoriums/flashbot
 do
-rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222' /home/krasi/src/github.com/cryptoriums/packages  root@localhost:/
-rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222' /home/krasi/src/github.com/cryptoriums/telliot  root@localhost:/
-rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222' /home/krasi/src/github.com/cryptoriums/telliot-frontr  root@localhost:/
-rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222' /home/krasi/src/github.com/bonedaddy/go-blocknative  root@localhost:/
+    sync
 done 
