@@ -4,7 +4,7 @@
 kubectl run -it --attach podName --image=golang:1.17.2-buster
 
 # Balena
-balena run -it --net=host --name=containerName --privileged golang:1.17.2-buster /bin/bash
+balena run -it --net=host --name=containerName --privileged --restart unless-stopped golang:1.17.2-buster /bin/bash
 
 
 apt-get update && apt install -y build-essential git nano wget curl libatomic1 rsync
