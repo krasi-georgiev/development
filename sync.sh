@@ -1,14 +1,20 @@
 #!/usr/bin/bash
 
+REMOTE_HOST="f5ef805.local"
+REMOTE_PORT=22
+
+FOLDERS=("/home/krasi/src/github.com/arribada/i360" "/home/krasi/src/github.com/arribada/zeroconf")
+
 
 function sync() {
-    rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222 ssh -p22 -o "StrictHostKeyChecking=no"' /home/krasi/src/github.com/cryptoriums/flashbot  root@localhost:/
-    rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p2222 ssh -p22 -o "StrictHostKeyChecking=no"' /home/krasi/src/github.com/cryptoriums/packages  root@localhost:/
+    for FOLDER in ${FOLDERS[@]}; do
+        rsync -avz --recursive -R --delete --prune-empty-dirs --exclude '.git' --info=progress2 -e 'ssh -p'"$REMOTE_PORT"' -o "StrictHostKeyChecking=no"' $FOLDER  root@$REMOTE_HOST:/
+    done
 }
 
 sync
 
-while inotifywait -r -e modify,create,delete /home/krasi/src/github.com/cryptoriums/packages /home/krasi/src/github.com/cryptoriums/flashbot
+while inotifywait -r -e modify,create,delete $FOLDERS
 do
     sync
 done 

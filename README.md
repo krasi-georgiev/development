@@ -2,10 +2,10 @@
 
 ### K8s
 ```
-kubectl run -it --attach podName --image=golang:1.17.2-buster
+kubectl run -it --attach dev --image=golang:1.17.2-buster
 ```
 ```
-kubectl expose pod podName --port=22 --type=NodePort --name=podName-ssh
+kubectl expose pod dev --port=22 --type=NodePort --name=dev-ssh
 ```
 
 > To see the auto generated external service port.<br/>
@@ -17,7 +17,7 @@ kubectl get service
 ### Balena
 
 ```
-balena run -it --net=host --name=containerName --privileged --restart unless-stopped golang:1.17.2-buster /bin/bash
+balena run -it --net=host --name=dev --privileged --restart unless-stopped golang:1.17.2-buster /bin/bash
 ```
 
 ```
