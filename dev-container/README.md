@@ -21,7 +21,7 @@ balena run -it --net=host --name=dev --privileged --restart unless-stopped golan
 ```
 
 ```
-apt-get update && apt install -y build-essential git nano wget curl libatomic1 rsync
+apt-get update && apt install -y sudo build-essential git nano wget curl libatomic1 rsync
 bash -c "$(curl -sSL https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/script-library/sshd-debian.sh)" -- 22 $(whoami) true random
 mkdir -p /root/.ssh/
 nano /root/.ssh/authorized_keys
