@@ -1,4 +1,4 @@
-# Access devices behind a firewall or behind a LTE router
+# Access devices behind a firewall or behind a LTE router or a firewall
 
 ## Using Balena 
  - Create tunnel to the ssh server
@@ -18,4 +18,12 @@ docker run -e VPN_IPSEC_PSK=xxx -e VPN_USER=vpnuser -e VPN_PASSWORD=xxx --net=ho
 ```
 ```
 sudo ip route add 192.168.88.0/24 dev ppp0
+```
+
+# Allow access to webfig on a mikrotik router
+
+```
+iptables -t nat -A PREROUTING -p tcp -i ppp0 --dport 8888 -j DNAT --to-destination 192.168.89.1:80
+
+iptables -A FORWARD -p tcp -d 192.168.89.1 --dport 80 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
 ```
