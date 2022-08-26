@@ -13,9 +13,13 @@ balena tunnel dfe2c52af38404de1a8d26bd28d686b5 -p 22222:22222
  ```
 
 ## Using  a vpn server. The router connects as a client and allows access to all devices on the local network.
+> works only on Linux or OSX
+
 ```
 docker run -e VPN_IPSEC_PSK=xxx -e VPN_USER=vpnuser -e VPN_PASSWORD=xxx --net=host -it --rm --privileged hwdsl2/ipsec-vpn-server
 ```
+Wait for the connection to be established and run the command below to setup the correct routing.
+> NOTE: should run the command again after every disconnect.
 ```
 sudo ip route add 192.168.88.0/24 dev ppp0
 ```
