@@ -17,7 +17,7 @@ kubectl get service
 ### Balena
 
 ```
-balena run -it --net=host --name=dev --privileged --restart unless-stopped golang:1.17.2-buster /bin/bash
+balena run -it -v /:/host-data --net=host --name=dev --privileged --restart unless-stopped golang:1.17.2-buster /bin/bash
 ```
 
 ```

@@ -6,7 +6,7 @@
 ```
 balena tunnel dfe2c52af38404de1a8d26bd28d686b5 -p 22222:22222
 ```
- -  Reverse port forwarding from the remote ip and port 192.168.1.166:80 to the local port 1111
+ -  Reverse port forwarding from the remote ip and port `192.168.88.1` to the local port `1111`
  
  ```
  ssh -L 1111:192.168.88.1:80 -p 22222 root@127.0.0.1
