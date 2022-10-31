@@ -23,7 +23,10 @@ Wait for the connection to be established and run the command below to setup the
 ```
 sudo ip route add 192.168.88.0/24 dev ppp0
 ```
-
+When a second client connects to the vpn server a new network device will be created so the router command should be
+```
+sudo ip route add 192.168.89.0/24 dev ppp1
+```
 # Allow access to webfig on a mikrotik router
 
 ```
