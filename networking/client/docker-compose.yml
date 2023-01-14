@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  vpn-client:
+    image: lscr.io/linuxserver/wireguard:alpine
+    container_name: wireguard-peer
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      # - SYS_MODULE #Required for kernels below 5.6. Location of kernel headers.
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Africa/Nairobi #set correct timezone
+    volumes:
+      - ./wg0.conf:/config/wg0.conf
+      # - /usr/src:/usr/src #Required for kernels below 5.6. Location of kernel headers.
+      # - /lib/modules:/lib/modules #Required for kernels below 5.6. Location of kernel headers.
+    networks:
+      default:
+        ipv4_address: 172.21.0.60
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+networks:
+  default:
+    name: wgnet
+    external: true
