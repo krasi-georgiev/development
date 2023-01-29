@@ -4,6 +4,19 @@
 Use the free managed service from https://tailscale.com
 Router setup https://tailscale.com/kb/1019/subnets/
 
+```
+curl -fsSL https://tailscale.com/install.sh | sh
+```
+
+Router
+```
+sudo tailscale up --advertise-routes=10.0.0.0/16,192.168.0.0/16
+```
+Client
+```
+sudo tailscale up
+```
+
 ## site2site with wireguard
 check the dedicated folder
 
