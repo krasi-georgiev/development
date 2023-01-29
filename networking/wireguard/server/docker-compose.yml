@@ -5,7 +5,7 @@ services:
     container_name: wireguard-server
     cap_add:
       - NET_ADMIN
-      # - SYS_MODULE # Required for kernels below 5.6.
+      # - SYS_MODULE # Required for kernels below 5.6
     environment:
       - PUID=1000
       - PGID=1000
@@ -17,9 +17,9 @@ services:
       - INTERNAL_SUBNET=172.66.66.0 #Subnet used in VPN tunnel
       - SERVERURL=auto # Auto detect external IP
     volumes:
-      - ./templates:/config/templates
-      # - /usr/src:/usr/src # Required for kernels below 5.6. Location of kernel headers.
-      # - /lib/modules:/lib/modules # Required for kernels below 5.6.
+      - ./config:/config
+      # - /usr/src:/usr/src # Required for kernels below 5.6. Location of kernel headers 
+      # - /lib/modules:/lib/modules # Required for kernels below 5.6
     ports:
       - 51820:51820/udp
     sysctls:

@@ -2,6 +2,10 @@
 
 # The easiest site2site setup is with tailscale on their free plan. 
 Use the free managed service from https://tailscale.com
+Router setup https://tailscale.com/kb/1019/subnets/
+
+## site2site with wireguard
+check the dedicated folder
 
 ## Using Balena 
  - Create tunnel to the ssh server
