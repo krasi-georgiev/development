@@ -1,5 +1,8 @@
 # Access devices behind a firewall or behind a LTE router or a firewall
 
+# The easiest site2site setup is with tailscale on their free plan. 
+Use the free managed service from https://tailscale.com
+
 ## Using Balena 
  - Create tunnel to the ssh server
 
@@ -12,7 +15,9 @@ balena tunnel dfe2c52af38404de1a8d26bd28d686b5 -p 22222:22222
  ssh -L 1111:192.168.88.1:80 -p 22222 root@127.0.0.1
  ```
 
-## Using  a vpn server. The router connects as a client and allows access to all devices on the local network.
+## Using a vpn server. 
+## Setup the router as a vpn client and run the command below to create a server 
+## The router will allows access to all devices on the local network.
 > works only on Linux or OSX
 
 ```
